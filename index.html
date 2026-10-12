@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Ghoul — Pixel RPG</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div id="hud"><div><div id="hpw"><div id="hp"></div></div><div id="rw"><div id="rb"></div><span id="rt">RAGE 0/15</span></div><div id="zn">ОПАСНАЯ ЗОНА</div><div id="fe" style="display:none"><img class="px" width="16" height="16" src="assets/flesh.png"> <span id="fet"></span></div></div><div style="text-align:right"><div id="kl">KILLS 0</div><div id="cn"><img class="px" width="14" height="14" src="assets/coin.png"> <span id="cv2">0</span></div></div></div>
+<div id="bw"><span id="bnm">REAPER</span><div id="bb"><div id="bf"></div></div></div><div id="bn"></div><div id="cmb"></div>
+<button id="mute">SND ON</button><button id="mnbtn">МЕНЮ</button>
+<div id="ctl"><div id="stick"><div id="knob"></div></div><button id="sup" style="display:none">SUPER</button><button id="dash">DASH</button><button id="atk">KA<br>GU<br>NE</button></div>
+<button id="shopbtn">ОТКРЫТЬ</button><button id="portbtn">ВОЙТИ</button><button id="upbtn">УЛУЧШЕНИЯ</button>
+<div id="shop" style="display:none"><div class="panel"><h3>МАГАЗИН</h3><div class="role">Баланс: <img class="px" width="14" height="14" src="assets/coin.png"> <span id="bal">0</span></div><div class="grid2"><div class="item"><img class="px" width="48" height="48" src="assets/flesh.png"><b>ПЛОТЬ</b><span id="fdesc">урон ×1.5<br>скорость ×1.5<br>20 секунд после выхода из безопасной зоны</span><span class="pr">10 <img class="px" width="10" height="10" src="assets/coin.png"></span><button class="buy" id="buyflesh">КУПИТЬ</button></div><div class="item"><img class="px" width="48" height="48" src="assets/coffee.png"><b>КОФЕ</b><span id="cdesc"></span><span class="pr">10 <img class="px" width="10" height="10" src="assets/coin.png"></span><button class="buy" id="buycoffee">КУПИТЬ</button></div><div class="slot"><b>?</b><span>СКОРО</span></div><div class="slot"><b>?</b><span>СКОРО</span></div><div class="slot"><b>?</b><span>СКОРО</span></div><div class="slot"><b>?</b><span>СКОРО</span></div></div><button class="mbtn sm" id="shopx">ЗАКРЫТЬ</button></div></div>
+<div id="up" style="display:none"><div class="panel"><h3>КОФЕЙНЯ ANTEIKU</h3><div class="role">Улучшения персонажа<br>Монеты: <img class="px" width="14" height="14" src="assets/coin.png"> <span id="upbal">0</span> · Убийств: <span id="upk">0</span></div><div id="upg" style="width:100%"></div><button class="mbtn sm" id="upx">ЗАКРЫТЬ</button></div></div>
+<div id="menu" style="display:none"><canvas id="mcv"></canvas>
+<div class="scr" id="m-main"><h1 class="ttl">GHOUL</h1><div class="sub">PIXEL RPG</div><button class="mbtn" data-a="play">ИГРАТЬ</button><button class="mbtn" data-a="chars">ПЕРСОНАЖ</button><button class="mbtn" data-a="exit">ВЫХОД</button><button class="mbtn sm" data-a="docs">ДОКУМЕНТАЦИЯ</button></div>
+<div class="scr" id="m-chars" style="display:none"><h2>ВЫБОР ПЕРСОНАЖА</h2><div class="grid"><div class="card sel" id="card0" data-a="char0" data-c="0"><canvas id="pv0" width="24" height="36"></canvas><span>КАНЭКИ</span></div><div class="card" id="card1" data-a="char1" data-c="1"><canvas id="pv2" width="24" height="36"></canvas><span>ТОУКА</span></div><div class="card" id="card2" data-a="char2" data-c="2"><canvas id="pv3" width="24" height="36"></canvas><span>ДЖУЗО</span></div></div><button class="mbtn sm" data-a="main">НАЗАД</button></div>
+<div class="scr" id="m-detail" style="display:none"><div class="panel"><canvas id="pv1" width="24" height="36"></canvas><h3 id="dn"></h3><div class="role" id="dr"></div><div id="stats" style="width:100%"></div><div class="abil" id="abil"></div></div><button class="mbtn sm" id="pickbtn" data-a="pick" style="margin-bottom:0">ВЫБРАТЬ</button><button class="mbtn sm" data-a="chars" style="margin-top:8px">НАЗАД</button></div>
+<div class="scr" id="m-docs" style="display:none"><h2>ДОКУМЕНТАЦИЯ<br><span style="font-size:8px">ВРАГИ</span></h2><div class="grid"><div class="card" data-a="doc0"><canvas id="pvd0" width="24" height="36"></canvas><span>КЛАСС 3</span></div><div class="card" data-a="doc1"><canvas id="pvd1" width="24" height="36"></canvas><span>КЛАСС 2</span></div><div class="card" data-a="doc4"><canvas id="pvd4" width="24" height="36"></canvas><span>КЛАСС 1</span></div><div class="card" data-a="doc2"><canvas id="pvd2" width="40" height="56" style="width:80px;height:112px"></canvas><span>БОСС 1</span></div><div class="card" data-a="doc3"><canvas id="pvd3" width="40" height="56" style="width:80px;height:112px"></canvas><span>БОСС 2</span></div></div><button class="mbtn sm" data-a="main">НАЗАД</button></div>
+<div class="scr" id="m-doc" style="display:none"><div class="panel"><canvas id="pvdd" width="24" height="36"></canvas><h3 id="ddn"></h3><div class="role" id="ddt"></div><div id="ddg" style="width:100%"></div><div class="abil" id="dda"></div></div><button class="mbtn sm" data-a="docs">НАЗАД</button></div>
+<div class="scr" id="m-exit" style="display:none"><h2>СПАСИБО ЗА ИГРУ!</h2><p style="font-size:9px;line-height:2;margin:0 0 20px">Можно закрыть вкладку.</p><button class="mbtn" data-a="main">В МЕНЮ</button></div></div>
+<div id="ov" style="display:none"><h1>GHOUL</h1><p>Ты — одноглазый гуль. Двигайся джойстиком, бей кагуне и выживи среди голубей CCG.</p><b>TAP TO START</b></div>
+<script src="js/01_core.js"></script>
+<script src="js/02_assets.js"></script>
+<script src="js/03_world.js"></script>
+<script src="js/04_state.js"></script>
+<script src="js/05_input.js"></script>
+<script src="js/06_combat.js"></script>
+<script src="js/07_pathfinding.js"></script>
+<script src="js/08_boss_reaper.js"></script>
+<script src="js/09_audio.js"></script>
+<script src="js/10_characters.js"></script>
+<script src="js/11_zones_economy.js"></script>
+<script src="js/12_abilities.js"></script>
+<script src="js/13_enemy_rank2.js"></script>
+<script src="js/14_kaneki_super.js"></script>
+<script src="js/15_dimension.js"></script>
+<script src="js/16_boss_executioner.js"></script>
+<script src="js/17_game_feel.js"></script>
+<script src="js/18_upgrades.js"></script>
+<script src="js/19_enemy_ranks.js"></script>
+<script src="js/20_update.js"></script>
+<script src="js/21_render.js"></script>
+<script src="js/22_menu.js"></script>
+</body>
+</html>
